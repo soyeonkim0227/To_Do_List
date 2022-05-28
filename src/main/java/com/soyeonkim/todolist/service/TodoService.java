@@ -50,4 +50,8 @@ public class TodoService {
     public List<Todo> getTodo() {
         return todoRepository.findAll();
     }
+
+    public Todo getTodo(Integer id) {
+        return todoRepository.findById(id).get();
+    }
 }

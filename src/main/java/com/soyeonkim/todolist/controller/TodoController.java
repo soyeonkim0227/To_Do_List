@@ -38,4 +38,9 @@ public class TodoController {
     public List<Todo> readAllTodo() {
         return todoService.getTodo();
     }
+
+    @GetMapping("/{todo-id}")
+    public Todo readTodo(@PathVariable("todo-id") Integer id) {
+        return todoService.getTodo(id);
+    }
 }
