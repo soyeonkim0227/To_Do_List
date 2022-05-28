@@ -2,10 +2,13 @@ package com.soyeonkim.todolist.service;
 
 import com.soyeonkim.todolist.controller.dto.CreateTodoRequest;
 import com.soyeonkim.todolist.controller.dto.MessageResponse;
+import com.soyeonkim.todolist.controller.dto.UpdateTodoRequest;
 import com.soyeonkim.todolist.entity.Todo;
 import com.soyeonkim.todolist.entity.TodoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -20,6 +23,26 @@ public class TodoService {
 
         return MessageResponse.builder()
                 .message("todo 생성이 완료되었습니다.")
+                .build();
+    }
+
+    @Transactional
+    public MessageResponse updateTodo(UpdateTodoRequest dto, Integer id) {
+        Todo todo = todoRepository.findById(id).get();
+
+        todo.setContent(dto.getContent());
+
+        return MessageResponse.builder()
+                .message(id + "번 아이디 todo 수정이 완료되었습니다.")
+                .build();
+    }
+
+    @Transactional
+    public MessageResponse deleteTodo(Integer id) {
+        todoRepository.deleteById(id);
+
+        return MessageResponse.builder()
+                .message(id + "번 아이디 todo 삭제가 완료되었습니다.")
                 .build();
     }
 }
