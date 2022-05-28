@@ -3,10 +3,13 @@ package com.soyeonkim.todolist.controller;
 import com.soyeonkim.todolist.controller.dto.CreateTodoRequest;
 import com.soyeonkim.todolist.controller.dto.MessageResponse;
 import com.soyeonkim.todolist.controller.dto.UpdateTodoRequest;
+import com.soyeonkim.todolist.entity.Todo;
 import com.soyeonkim.todolist.service.TodoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -29,5 +32,10 @@ public class TodoController {
     @DeleteMapping("/{todo-id}")
     public MessageResponse deleteTodo(@PathVariable("todo-id") Integer id) {
         return todoService.deleteTodo(id);
+    }
+
+    @GetMapping
+    public List<Todo> readAllTodo() {
+        return todoService.getTodo();
     }
 }

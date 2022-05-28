@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -44,5 +45,9 @@ public class TodoService {
         return MessageResponse.builder()
                 .message(id + "번 아이디 todo 삭제가 완료되었습니다.")
                 .build();
+    }
+
+    public List<Todo> getTodo() {
+        return todoRepository.findAll();
     }
 }
