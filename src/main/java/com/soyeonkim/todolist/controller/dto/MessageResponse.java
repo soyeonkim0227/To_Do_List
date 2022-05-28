@@ -3,11 +3,9 @@ package com.soyeonkim.todolist.controller.dto;
 import lombok.Builder;
 import lombok.Getter;
 
-@Getter
 @Builder
-public class ReadTodoRequest {
+@Getter
+public class MessageResponse {
 
-    private Integer id;
-
-    private String content;
+    private final String message;
 }

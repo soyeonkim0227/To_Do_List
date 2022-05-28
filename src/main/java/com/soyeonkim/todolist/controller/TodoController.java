@@ -1,6 +1,7 @@
 package com.soyeonkim.todolist.controller;
 
 import com.soyeonkim.todolist.controller.dto.CreateTodoRequest;
+import com.soyeonkim.todolist.controller.dto.MessageResponse;
 import com.soyeonkim.todolist.service.TodoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,7 +16,7 @@ public class TodoController {
 
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
-    public void creatUser(@RequestBody CreateTodoRequest dto) {
-        todoService.createTodo(dto);
+    public MessageResponse createTodo(@RequestBody CreateTodoRequest dto) {
+        return todoService.createTodo(dto);
     }
 }
