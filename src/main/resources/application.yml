@@ -1,0 +1,12 @@
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: ${JDBC_URL}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: ${PASSWORD}
+    username: ${USERNAME}
+  jackson:
+    property-naming-strategy: SNAKE_CASE
