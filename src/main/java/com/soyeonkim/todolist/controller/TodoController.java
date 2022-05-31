@@ -2,6 +2,7 @@ package com.soyeonkim.todolist.controller;
 
 import com.soyeonkim.todolist.controller.dto.CreateTodoRequest;
 import com.soyeonkim.todolist.controller.dto.MessageResponse;
+import com.soyeonkim.todolist.controller.dto.PatchTodoSuccessRequest;
 import com.soyeonkim.todolist.controller.dto.UpdateTodoRequest;
 import com.soyeonkim.todolist.entity.Todo;
 import com.soyeonkim.todolist.service.TodoService;
@@ -42,5 +43,10 @@ public class TodoController {
     @GetMapping("/{todo-id}")
     public Todo readTodo(@PathVariable("todo-id") Integer id) {
         return todoService.getTodo(id);
+    }
+
+    @PatchMapping("/{todo-id}/success")
+    public  MessageResponse patchTodoSuccess(@PathVariable("todo-id") Integer id, @RequestBody PatchTodoSuccessRequest request) {
+        return todoService.patchTodo(request.getIsSuccess(), id);
     }
 }
