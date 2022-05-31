@@ -21,6 +21,7 @@ public class TodoService {
     public MessageResponse createTodo(CreateTodoRequest request) {
         todoRepository.save(Todo.builder()
                 .content(request.getContent())
+                .isSuccess(false)
                 .build());
 
         return MessageResponse.builder()
@@ -56,5 +57,16 @@ public class TodoService {
     public Todo getTodo(Integer id) {
 
         return todoRepository.findById(id).orElseThrow(NotFoundTodoException::new);
+    }
+
+    @Transactional
+    public MessageResponse patchTodo(Boolean isSuccess, Integer id) {
+
+        Todo todo = todoRepository.findById(id).orElseThrow(NotFoundTodoException::new);
+        todo.setIsSuccess(isSuccess);
+
+        return MessageResponse.builder()
+                .message(id + "번 아이디 todo 완료 여부가 변경되었습니다.")
+                .build();
     }
 }
