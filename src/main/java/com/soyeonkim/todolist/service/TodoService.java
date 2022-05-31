@@ -5,6 +5,7 @@ import com.soyeonkim.todolist.controller.dto.MessageResponse;
 import com.soyeonkim.todolist.controller.dto.UpdateTodoRequest;
 import com.soyeonkim.todolist.entity.Todo;
 import com.soyeonkim.todolist.entity.TodoRepository;
+import com.soyeonkim.todolist.exception.exceptions.NotFoundTodoException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +30,8 @@ public class TodoService {
 
     @Transactional
     public MessageResponse updateTodo(UpdateTodoRequest dto, Integer id) {
-        Todo todo = todoRepository.findById(id).get();
+        Todo todo = todoRepository.findById(id)
+                        .orElseThrow(NotFoundTodoException::new);
 
         todo.setContent(dto.getContent());
 
@@ -52,6 +54,7 @@ public class TodoService {
     }
 
     public Todo getTodo(Integer id) {
-        return todoRepository.findById(id).get();
+
+        return todoRepository.findById(id).orElseThrow(NotFoundTodoException::new);
     }
 }
