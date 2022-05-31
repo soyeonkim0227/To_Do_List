@@ -17,4 +17,8 @@ public class Todo {
 
     @Setter
     private String content;
+
+    @Setter
+    @Column(nullable = false, columnDefinition = "tinyint(1)")
+    private Boolean isSuccess;
 }
