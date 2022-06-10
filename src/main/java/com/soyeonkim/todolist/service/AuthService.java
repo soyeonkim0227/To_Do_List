@@ -5,6 +5,7 @@ import com.soyeonkim.todolist.controller.dto.MessageResponse;
 import com.soyeonkim.todolist.controller.dto.SignUpUserRequest;
 import com.soyeonkim.todolist.entity.User;
 import com.soyeonkim.todolist.entity.UserRepository;
+import com.soyeonkim.todolist.security.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import java.util.Objects;
 public class AuthService {
 
     private final UserRepository userRepository;
+    private final JwtTokenProvider jwtTokenProvider;
 
     // 함수, 메서드 이름 1. 동사 + 명사, 2. 동사 + 명사 + 명사
     public MessageResponse createSignUping(SignUpUserRequest request) {
@@ -36,7 +38,7 @@ public class AuthService {
         User user = userRepository.findByAccountId(request.getAccountId()).get();
         if (Objects.equals(user.getAccountPassword(), request.getAccountPassword())) {
             return MessageResponse.builder()
-                    .message("user 로그인을 성공하였습니다.")
+                    .message(jwtTokenProvider.generateAccessToken(user.getAccountId()))
                     .build();
         }
         else {
