@@ -1,5 +1,6 @@
 package com.soyeonkim.todolist.controller;
 
+import com.soyeonkim.todolist.controller.dto.LoginUserRequest;
 import com.soyeonkim.todolist.controller.dto.MessageResponse;
 import com.soyeonkim.todolist.controller.dto.SignUpUserRequest;
 import com.soyeonkim.todolist.service.AuthService;
@@ -17,7 +18,12 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/signup")
-    public MessageResponse login(@RequestBody SignUpUserRequest dto) {
+    public MessageResponse signup(@RequestBody SignUpUserRequest dto) {
         return authService.createSignUping(dto);
+    }
+
+    @PostMapping("/login")
+    public MessageResponse login(@RequestBody LoginUserRequest dto) {
+        return authService.createLogining(dto);
     }
 }
