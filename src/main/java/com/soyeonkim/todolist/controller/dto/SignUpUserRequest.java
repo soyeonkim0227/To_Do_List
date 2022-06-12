@@ -19,5 +19,5 @@ public class SignUpUserRequest {
 
     private String accountId;
 
-    private String accountPassword;
+    private String password;
 }

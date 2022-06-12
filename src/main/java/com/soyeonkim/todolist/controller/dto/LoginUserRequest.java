@@ -13,5 +13,5 @@ public class LoginUserRequest {
 
     private String accountId;
 
-    private String accountPassword;
+    private String password;
 }
