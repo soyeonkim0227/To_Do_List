@@ -28,5 +28,5 @@ public class User {
     private String accountId;
 
     @Setter
-    private String accountPassword;
+    private String password;
 }
