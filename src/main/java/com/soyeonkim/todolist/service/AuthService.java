@@ -25,7 +25,7 @@ public class AuthService {
                 .number(request.getNumber())
                 .badScore(request.getBadScore())
                 .accountId(request.getAccountId())
-                .accountPassword(request.getAccountPassword())
+                .password(request.getPassword())
                 .build());
 
         return MessageResponse.builder()
@@ -36,7 +36,7 @@ public class AuthService {
     public MessageResponse createLogining(LoginUserRequest request) {
 
         User user = userRepository.findByAccountId(request.getAccountId()).get();
-        if (Objects.equals(user.getAccountPassword(), request.getAccountPassword())) {
+        if (Objects.equals(user.getPassword(), request.getPassword())) {
             return MessageResponse.builder()
                     .message(jwtTokenProvider.generateAccessToken(user.getAccountId()))
                     .build();
