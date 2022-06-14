@@ -7,6 +7,7 @@ import com.soyeonkim.todolist.entity.Todo;
 import com.soyeonkim.todolist.entity.TodoRepository;
 import com.soyeonkim.todolist.exception.exceptions.NotFoundTodoException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -51,6 +52,7 @@ public class TodoService {
     }
 
     public List<Todo> getTodo() {
+        System.out.println(SecurityContextHolder.getContext().getAuthentication());
         return todoRepository.findAll();
     }
 
